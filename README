@@ -1,0 +1,28 @@
+# Descartes_docker
+
+## Docker
+### Build
+```
+git clone https://github.com/grdwyer/descartes_docker.git
+cd descartes_docker
+docker build -t descartes:latest .
+```
+
+### Run
+```
+docker run -it \
+    --user=$(id -u $USER):$(id -g $USER) \
+    --group-add sudo \
+    --env="DISPLAY" \
+    --workdir="/catkin_ws/src" \
+    --volume="/home/$USER:/home/$USER" \
+    --volume="/etc/group:/etc/group:ro" \
+    --volume="/etc/passwd:/etc/passwd:ro" \
+    --volume="/etc/shadow:/etc/shadow:ro" \
+    --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    descartes:latest
+```
+
+## Setting up your workspace
+Moving you packages to 
